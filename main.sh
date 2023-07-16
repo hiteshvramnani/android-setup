@@ -40,8 +40,11 @@ function net(){
 }
 
 function adb_check() {
-    adb devices | awk 'NF==2 && NR>1 {print $2}' | grep -v -E "unauthorized|offline" >/dev/null 2>&1
-    if [ $? -eq 0 ]; then
+    adb get-state >/dev/null 2>&1
+    result=$?
+    echo "adb get-state result: $result"  # Debug statement
+
+    if [ $result -eq 0 ]; then
         echo "+------------------------------------------+"
         echo "|                                          |"
         echo "|                adb Connected !!          |"
@@ -83,7 +86,6 @@ function adb_check() {
         echo -e "\n" && banner && exit
     fi
 }
-
 
 #====================================================================Before Starting ===================================================================
 #https://github.com/whalehub/custom-certificate-authorities
