@@ -73,20 +73,6 @@ function net(){
 
 ####### For adb  & Root Acess 
 function adb_check(){
-      adb get-state >/dev/null 2>&1 
-      if [ $? == 0 ];then
-            echo "+------------------------------------------+"
-            echo "|                                          |"
-            echo "|                adb Connected !!          |"
-            echo -e "+------------------------------------------+\n\n"
-      else  
-            echo -e "\033[1;91m" 
-            echo "+------------------------------------------+"
-            echo "|       adb is not running                 |"
-            echo "|               oR                         |"
-            echo "|   More than one emulator exits           |" 
-            echo -e "+------------------------------------------+\n\n"&& banner && exit
-      fi
       #checking root access
       adb shell -n 'su -c ""' >/dev/null 2>&1
       if [ $? == 0 ]; then
@@ -483,7 +469,7 @@ function start(){
             case $option in
             1) all
             ;;
-            2) net; sleep 3 adb_check;burp;burpcer
+            2) net; adb_check;burp;burpcer
             ;;
             3) net; pc_tools;   
             ;;
