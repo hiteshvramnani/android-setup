@@ -43,19 +43,18 @@ function burp(){
             echo -e "+------------------------------------------+\n\n"&& banner && exit
       fi
 }
+
 function adb_check() {
-    adb get-state >/dev/null 2>&1
-    if [ $? -eq 0 ]; then
+    devices_output=$(adb devices)
+    if [[ $devices_output == *"device"* ]]; then
         echo "+------------------------------------------+"
         echo "|                                          |"
-        echo "|                adb Connected !!          |"
+        echo "|            ADB Connected!                |"
         echo -e "+------------------------------------------+\n\n"
     else
         echo -e "\033[1;91m"
         echo "+------------------------------------------+"
-        echo "|       adb is not running                 |"
-        echo "|               or                         |"
-        echo "|   more than one emulator exists           |"
+        echo "|         ADB is not running               |"
         echo -e "+------------------------------------------+\n\n"
         # Call the 'banner' function here if it's defined
         exit
