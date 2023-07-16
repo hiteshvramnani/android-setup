@@ -87,6 +87,7 @@ function adb_check() {
     fi
 }
 
+
 #====================================================================Before Starting ===================================================================
 #https://github.com/whalehub/custom-certificate-authorities
 #https://pswalia2u.medium.com/install-burpsuites-or-any-ca-certificate-to-system-store-in-android-10-and-11-38e508a5541a
