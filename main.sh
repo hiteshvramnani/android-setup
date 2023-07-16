@@ -57,7 +57,6 @@ function adb_check() {
         echo "|         ADB is not running               |"
         echo -e "+------------------------------------------+\n\n"
         # Call the 'banner' function here if it's defined
-        exit
     fi
 
     # Checking root access
