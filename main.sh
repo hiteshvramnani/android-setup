@@ -72,10 +72,6 @@ function net(){
 }
 
 ####### For adb  & Root Acess 
-
-sleep 3 # Delay for 3 seconds
-adb_check
-
 function adb_check(){
       adb get-state >/dev/null 2>&1 
       if [ $? == 0 ];then
@@ -487,7 +483,7 @@ function start(){
             case $option in
             1) all
             ;;
-            2) net; adb_check;burp;burpcer
+            2) net; sleep 3 adb_check;burp;burpcer
             ;;
             3) net; pc_tools;   
             ;;
