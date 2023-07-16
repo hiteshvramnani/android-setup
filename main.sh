@@ -45,8 +45,8 @@ function burp(){
 }
 
 function adb_check() {
-    devices_output=$(adb devices)
-    if [[ $devices_output == *"device"* ]]; then
+    devices_count=$(adb devices | grep -v "List of devices" | grep -v "attached" | wc -l)
+    if [ "$devices_count" -gt 0 ]; then
         echo "+------------------------------------------+"
         echo "|                                          |"
         echo "|            ADB Connected!                |"
