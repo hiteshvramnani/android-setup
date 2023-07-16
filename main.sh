@@ -82,7 +82,7 @@ function adb_check(){
         fi
       #checking root access
       adb shell -n 'su -c ""' >/dev/null 2>&1
-      if [ $? == 0 ]; then
+      if [ $? == "device" ]; then
             echo ' '
            
       else 
