@@ -79,6 +79,7 @@ function adb_check(){
             echo "ADB is connected."
         else
             echo "ADB is not connected."
+        exit
         fi
 
       #checking root access
