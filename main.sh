@@ -1,6 +1,5 @@
 
 #!/bin/bash 
-#Author: @github.com/raoshaab
 #############Checking for pre-condition###########
 
 
