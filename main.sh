@@ -45,8 +45,8 @@ function burp(){
 }
 
 function adb_check() {
-    devices_count=$(adb devices | grep -v "List of devices" | grep -v "attached" | wc -l)
-    if [ "$devices_count" -gt 0 ]; then
+    devices_output=$(adb devices)
+    if [[ $devices_output == *"device"* ]]; then
         echo "+------------------------------------------+"
         echo "|                                          |"
         echo "|            ADB Connected!                |"
@@ -56,11 +56,12 @@ function adb_check() {
         echo "+------------------------------------------+"
         echo "|         ADB is not running               |"
         echo -e "+------------------------------------------+\n\n"
+        # Call the 'banner' function here if it's defined
         exit
     fi
 
     # Checking root access
-    adb root >/dev/null 2>&1
+    adb shell -n 'su -c ""' >/dev/null 2>&1
     if [ $? -eq 0 ]; then
         echo 'Root access granted.'
     else
@@ -68,6 +69,7 @@ function adb_check() {
         echo "|                                          |"
         echo "|  Give root access to adb from Superuser  |"
         echo -e "+------------------------------------------+\n\n"
+        # Call the 'banner' function here if it's defined
         exit
     fi
 }
