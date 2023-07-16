@@ -43,36 +43,38 @@ function burp(){
             echo -e "+------------------------------------------+\n\n"&& banner && exit
       fi
 }
-####### For adb  & Root Acess 
-function adb_check(){
-      adb get-state >/dev/null 2>&1 
-      if [ $? == 0 ];then
-            echo "+------------------------------------------+"
-            echo "|                                          |"
-            echo "|                adb Connected !!          |"
-            echo -e "+------------------------------------------+\n\n"
-      else  
-            echo -e "\033[1;91m" 
-            echo "+------------------------------------------+"
-            echo "|       adb is not running                 |"
-            echo "|               oR                         |"
-            echo "|   More than one emulator exits           |" 
-            echo -e "+------------------------------------------+\n\n"&& banner && exit
-      fi
-      #checking root access
-      adb shell -n 'su -c ""' >/dev/null 2>&1
-      if [ $? == 0 ]; then
-            echo ' '
-           
-      else 
-            echo "+------------------------------------------+"
-            echo "|                                          |"
-            echo "|  Give root Access to adb from Superuser  |"
-            echo -e "+------------------------------------------+\n\n"&& banner && exit
-      fi
+function adb_check() {
+    adb get-state >/dev/null 2>&1
+    if [ $? -eq 0 ]; then
+        echo "+------------------------------------------+"
+        echo "|                                          |"
+        echo "|                adb Connected !!          |"
+        echo -e "+------------------------------------------+\n\n"
+    else
+        echo -e "\033[1;91m"
+        echo "+------------------------------------------+"
+        echo "|       adb is not running                 |"
+        echo "|               or                         |"
+        echo "|   more than one emulator exists           |"
+        echo -e "+------------------------------------------+\n\n"
+        # Call the 'banner' function here if it's defined
+        exit
+    fi
 
-        
+    # Checking root access
+    adb shell -n 'su -c ""' >/dev/null 2>&1
+    if [ $? -eq 0 ]; then
+        echo 'Root access granted.'
+    else
+        echo "+------------------------------------------+"
+        echo "|                                          |"
+        echo "|  Give root access to adb from Superuser  |"
+        echo -e "+------------------------------------------+\n\n"
+        # Call the 'banner' function here if it's defined
+        exit
+    fi
 }
+
 #====================================================================Before Starting ===================================================================
 #https://github.com/whalehub/custom-certificate-authorities
 #https://pswalia2u.medium.com/install-burpsuites-or-any-ca-certificate-to-system-store-in-android-10-and-11-38e508a5541a
