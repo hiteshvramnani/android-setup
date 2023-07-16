@@ -6,7 +6,7 @@
 
 function burp(){
     check=$(curl -s http://127.0.0.1:8080/ 2>/dev/null | grep Burp -o | head -n1)
-    if [[ $check == Burp ]]; then
+    if [[ "$check" == *"Burp"* ]]
         echo "+------------------------------------------+"
         echo "|                                          |"
         echo "|         Burpsuite Running done !!        |"
@@ -49,20 +49,23 @@ function adb_check() {
     else
         echo -e "\033[1;91m"
         echo "+------------------------------------------+"
-        echo "|       adb is not running                 |"
-        echo "|               or                         |"
-        echo "|   More than one emulator exists           |"
+        echo "|               Error                      |"
+        echo "|   adb is not running or multiple         |"
+        echo "|   emulators are running.                 |"
         echo "+------------------------------------------+"
         echo "|                                          |"
-        echo "|   Give root Access to adb from Superuser |"
+        echo "|   Make sure adb is running and only       |"
+        echo "|   one emulator is running.               |"
         echo "|                                          |"
-        echo "|   If using Android Studio Emulator       |"
-        echo "|   ==>  https://github.com/newbit1/rootAVD|"
-        echo "|   For Genymotion: https://t.ly/n_5F      |"
+        echo "|   If using Android Studio Emulator,       |"
+        echo "|   you may need to give root access to     |"
+        echo "|   adb from Superuser.                    |"
+        echo "|                                          |"
+        echo "|   If using Genymotion, refer to:          |"
+        echo "|   https://t.ly/n_5F                      |"
         echo "+------------------------------------------+"
-        echo -e "\n"
-        banner
-        exit
+        echo -e "\n" && banner && exit
+
     fi
 
     # Checking root access
