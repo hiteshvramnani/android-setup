@@ -73,15 +73,13 @@ function net(){
 
 ####### For adb  & Root Acess 
 function adb_check(){
-        adb devices | grep "device$"
-
-        if [ $? -eq 0 ]; then
-            echo "ADB is connected."
+      
+        if [[ "$adb_state" == "device" ]]; then
+              echo "ADB is connected."
         else
-            echo "ADB is not connected."
+              echo "ADB is not connected."
         exit
         fi
-
       #checking root access
       adb shell -n 'su -c ""' >/dev/null 2>&1
       if [ $? == 0 ]; then
