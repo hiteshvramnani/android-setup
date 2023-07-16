@@ -376,7 +376,6 @@ function frida_mismatch(){
 function all(){
       burp
       net 
-      adb_check
       pc_tools
       andro_apps
       frida_ando
