@@ -56,11 +56,11 @@ function adb_check() {
         echo "+------------------------------------------+"
         echo "|         ADB is not running               |"
         echo -e "+------------------------------------------+\n\n"
-        # Call the 'banner' function here if it's defined
+        exit
     fi
 
     # Checking root access
-    adb shell -n 'su -c ""' >/dev/null 2>&1
+    adb root >/dev/null 2>&1
     if [ $? -eq 0 ]; then
         echo 'Root access granted.'
     else
@@ -68,7 +68,6 @@ function adb_check() {
         echo "|                                          |"
         echo "|  Give root access to adb from Superuser  |"
         echo -e "+------------------------------------------+\n\n"
-        # Call the 'banner' function here if it's defined
         exit
     fi
 }
