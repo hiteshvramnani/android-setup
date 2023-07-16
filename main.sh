@@ -40,7 +40,7 @@ function net(){
 }
 
 function adb_check() {
-    adb get-state >/dev/null 2>&1
+    adb devices | awk 'NF==2 && NR>1 {print $2}' | grep -v -E "unauthorized|offline" >/dev/null 2>&1
     if [ $? -eq 0 ]; then
         echo "+------------------------------------------+"
         echo "|                                          |"
@@ -65,7 +65,6 @@ function adb_check() {
         echo "|   https://t.ly/n_5F                      |"
         echo "+------------------------------------------+"
         echo -e "\n" && banner && exit
-
     fi
 
     # Checking root access
@@ -81,11 +80,10 @@ function adb_check() {
         echo "|   ==>  https://github.com/newbit1/rootAVD|"
         echo "|   For Genymotion: https://t.ly/n_5F      |"
         echo "+------------------------------------------+"
-        echo -e "\n"
-        banner
-        exit
+        echo -e "\n" && banner && exit
     fi
 }
+
 
 #====================================================================Before Starting ===================================================================
 #https://github.com/whalehub/custom-certificate-authorities
