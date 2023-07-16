@@ -27,6 +27,25 @@ function burp(){
 
 #For Internet connectivity 
 
+      function net(){
+      
+       ping 8.8.8.8 -c1 &>/dev/null 
+      if [ $? == 0 ]; then
+             echo -e "\033[0;92m"
+          #  echo "+------------------------------------------+"
+          #  echo "|                                          |"
+          #  echo "|         Internet Ready to go             |" 
+          #  echo -e "+------------------------------------------+\n\n"
+      else 
+      echo -e "\033[1;91m" 
+            echo "+------------------------------------------+"
+            echo "|               Error                      |"
+            echo "|             No Internet                  |" 
+            echo -e "+------------------------------------------+\n\n"&& banner && exit
+      fi
+}
+####### For adb  & Root Acess 
+function adb_check(){
       adb get-state >/dev/null 2>&1 
       if [ $? == 0 ];then
             echo "+------------------------------------------+"
