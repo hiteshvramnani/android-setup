@@ -72,26 +72,6 @@ function net(){
 }
 
 ####### For adb  & Root Acess 
-function adb_check(){
-      #checking root access
-      adb shell -n 'su -c ""' >/dev/null 2>&1
-      if [ $? == 0 ]; then
-            echo ' '
-           
-      else 
-            echo "+------------------------------------------+"
-            echo "|                                          |"
-            echo "|  Give root Access to adb from Superuser  |"
-            echo "|                                          |"
-            echo "|   If using Android Studio Emulator       |"
-            echo "|   ==>  https://github.com/newbit1/rootAVD|"
-            echo "|   For genymotion https://t.ly/n_5F       |"
-            echo -e "+------------------------------------------+\n\n"&& banner && exit
-      fi
-
-        
-
-}
 
 
 #====================================================================Before Starting ===================================================================
@@ -469,15 +449,15 @@ function start(){
             case $option in
             1) all
             ;;
-            2) net; adb_check;burp;burpcer
+            2) net;burp;burpcer
             ;;
             3) net; pc_tools;   
             ;;
-            4) net; adb_check ;frida_ando
+            4) net ;frida_ando
             ;;
-            5) net; adb_check;frida_mismatch;
+            5) net;frida_mismatch;
             ;;
-            6) net; adb_check; andro_apps
+            6) net; andro_apps
             ;;
             0) banner;exit
             ;;
