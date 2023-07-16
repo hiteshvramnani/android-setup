@@ -45,34 +45,46 @@ function burp(){
 }
 
 function adb_check() {
-    devices_output=$(adb devices)
-    if [[ $devices_output == *"device"* ]]; then
+    adb get-state >/dev/null 2>&1
+    if [ $? -eq 0 ]; then
         echo "+------------------------------------------+"
         echo "|                                          |"
-        echo "|            ADB Connected!                |"
+        echo "|                adb Connected !!          |"
         echo -e "+------------------------------------------+\n\n"
     else
         echo -e "\033[1;91m"
         echo "+------------------------------------------+"
-        echo "|         ADB is not running               |"
-        echo -e "+------------------------------------------+\n\n"
-        # Call the 'banner' function here if it's defined
-        exit
+        echo "|       adb is not running                 |"
+        echo "|               or                         |"
+        echo "|   More than one emulator exists           |"
+        echo "+------------------------------------------+"
+        echo "|                                          |"
+        echo "|   Give root Access to adb from Superuser |"
+        echo "|                                          |"
+        echo "|   If using Android Studio Emulator       |"
+        echo "|   ==>  https://github.com/newbit1/rootAVD|"
+        echo "|   For Genymotion: https://t.ly/n_5F      |"
+        echo "+------------------------------------------+"
+        echo -e "\n" && banner
     fi
 
     # Checking root access
     adb shell -n 'su -c ""' >/dev/null 2>&1
     if [ $? -eq 0 ]; then
-        echo 'Root access granted.'
+        echo "Root access granted."
     else
         echo "+------------------------------------------+"
         echo "|                                          |"
-        echo "|  Give root access to adb from Superuser  |"
-        echo -e "+------------------------------------------+\n\n"
-        # Call the 'banner' function here if it's defined
-        exit
+        echo "|  Give root Access to adb from Superuser  |"
+        echo "|                                          |"
+        echo "|   If using Android Studio Emulator       |"
+        echo "|   ==>  https://github.com/newbit1/rootAVD|"
+        echo "|   For Genymotion: https://t.ly/n_5F      |"
+        echo "+------------------------------------------+"
+        echo -e "\n" && banner
     fi
 }
+
 
 #====================================================================Before Starting ===================================================================
 #https://github.com/whalehub/custom-certificate-authorities
