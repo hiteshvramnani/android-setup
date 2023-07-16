@@ -22,6 +22,7 @@ function burp(){
     fi
 }
 
+
 #For Internet connectivity
 
 function net(){
